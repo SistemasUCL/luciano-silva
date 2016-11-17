@@ -1,0 +1,62 @@
+@(listaServico: List[Servico],formFornecedor: Form[Fornecedor])
+@import helper._
+@import meuhelper._
+@main("Formulário de Fornecedores") {
+
+<div id="all">
+	<div id="content">
+		<div class="container">
+			<div class="col-md-9">
+				<div class="box">
+					<meta charset="utf-8">
+					<h1>Formulário de Fornecedor</h1>
+					@meuhelper.form("Fornecedores",routes.FornecedoresController.salvar(),"post","multipart/form-data"){
+					<fieldset>
+						<input type="hidden" name="id" value='@formFornecedor("id").value'>
+						<div class="col-sm-12">
+							@meuhelper.inputTextRequired("nome",formFornecedor("nome").value,"Nome")
+						</div>
+						<div class="col-sm-12">						
+							@meuhelper.inputText("descricao", formFornecedor("descricao").value, "Descrição") 
+						</div>
+						<div class="col-sm-12">
+							@meuhelper.inputText("site",formFornecedor("site").value, "Site")
+						</div>
+						<div class="col-sm-6">
+							@meuhelper.inputNumber("minConvidados",formFornecedor("minConvidados").value, "Quantidade Minima")
+						</div>
+						<div class="col-sm-6">
+							@meuhelper.inputNumber("maxConvidados", formFornecedor("maxConvidados").value, "Quantidade Máxima") 		
+						</div>
+						<div class="col-sm-12">
+                           <div class="form-group" >
+                           	<label>Serviços: </label>
+							    <select class="form-control" name="servico.id" required>
+							    	<option value="0"/>
+							    	@for(servico <- listaServico){
+							        	<option value="servico.id" 
+							        		@{if (formFornecedor("servico.id") == servico.id) 
+							        			"selected" else ""}>
+							        		@(servico.tipo)
+							        	</option>
+							      	}
+							    </select>
+                           </div>
+                         </div>
+					</fieldset>
+					</br>
+					<div class="col-sm-12 text-center">
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i> Salvar
+						</button>
+						<a class="btn btn-primary" href="@routes.FornecedoresController.lista()"><i
+							class="glyphicon glyphicon-remove"></i> Cancelar</a>
+					</div>
+				
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+}

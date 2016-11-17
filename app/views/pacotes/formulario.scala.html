@@ -1,0 +1,33 @@
+@(formPacote: Form[Pacote])
+@import helper._
+@import meuhelper._
+@main("Formulário de Pacote") {
+
+<div id="all">
+	<div id="content">
+		<div class="container">
+			<div class="col-md-9">
+				<div class="box">
+					<meta charset="utf-8">
+					<h3>Formulário de Pacote</h3>
+				
+					<fieldset>
+							<input type="hidden" name="id" value='@formPacote("id").value'>
+							<div class="col-sm-6">
+								<div class="form-group">@meuhelper.inputText("nome",
+									formPacote("nome").value, "Nome")</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">@meuhelper.inputText("descricao",
+									formPacote("descricao").value, "Descrição")</div>
+							</div>
+						</div>
+					</fieldset>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+}

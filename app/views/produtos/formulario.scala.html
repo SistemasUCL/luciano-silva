@@ -1,0 +1,51 @@
+@(listaCategoria: List[Categoria],formProduto: Form[Produto])
+@import helper._
+@import meuhelper._
+@main("Formulário de Produtos") {
+
+<div id="all">
+	<div id="content">
+		<div class="container">
+			<div class="col-md-9">
+				<div class="box">
+					<meta charset="utf-8">
+					<h1>Formulário de Produto</h1>
+					@meuhelper.form("produtos",routes.ProdutosController.salvar(),"post","multipart/form-data"){
+					<fieldset>
+						<input type="hidden" name="id" value='@formProduto("id").value'>
+						
+						@meuhelper.inputTextRequired("nome",formProduto("nome").value,"Nome")
+						@meuhelper.inputTextRequired("descricao", formProduto("descricao").value, "Descrição") 
+						@meuhelper.inputTextRequired("peso",formProduto("peso").value, "Peso") 
+						@meuhelper.inputTextRequired("tamanho", formProduto("tamanho").value, "Tamanho") 
+						@meuhelper.inputTextRequired("preco",formProduto("preco").value, "Preço")
+						<div class="col-sm-6">
+                          <div class="form-group">
+                          	<label>Categorias: </label>
+							   <select class="form-control" name="categoria.id">
+							   	<option value="0"/>
+							   	@for(categoria <- listaCategoria){
+							       	<option value="@(categoria.id)" @{if (formProduto("categoria.id") == categoria.id) "selected" else ""}>
+							       		@(categoria.nome)
+							       	</option>
+							     	}
+							   </select>
+                          </div>
+                         </div> 
+						<input type="file" name="imagem">
+					</fieldset>
+					<div class="col-sm-12 text-center">
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i> Salvar
+						</button>
+						<a class="btn btn-primary" href="@routes.ProdutosController.lista()"><i
+							class="glyphicon glyphicon-remove"></i> Cancelar</a>
+					</div>
+				
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+}

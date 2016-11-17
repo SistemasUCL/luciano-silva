@@ -1,0 +1,50 @@
+@(listaFornecedores: List[Fornecedor]) @main("Lista de Fornecedores") {
+
+
+<div class="table-responsive">
+			
+					<meta charset="utf-8">
+					<h2>Todos os Fornecedores</h2>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Valor</th>
+								<th>Descrição</th>
+								<th>Site</th>
+								<th>Quantidade Minima</th>
+								<th>Quantidade Máxima</th>								
+								<th>Tipo de Serviço</tr>
+						</thead>
+						<tbody>
+							@for(item <- listaFornecedores) {
+							<tr>
+								<td>@item.nome</td>
+								<td>@item.valor</td>
+								<td>@item.descricao</td>
+								<td>@item.site</td>
+								<td>@item.minConvidados</td>
+								<td>@item.maxConvidados</td>
+								<td>@item.servico.tipo</td>
+								<td><a class="btn btn-primary" href="@routes.FornecedoresController.formulario(item.id)">
+									<i class="glyphicon glyphicon-pencil"></i> Editar</a>
+								</td>
+								<td><a class="btn btn-primary" href="@routes.FornecedoresController.remover(item.id)"
+									onclick="return confirm('Deseja realmente excluir esta Categoria?')">
+										<i class="glyphicon glyphicon-minus"></i> Remover</a>
+								</td>
+							</tr>
+							}
+						</tbody>
+					</table>
+					</br>
+					<div class="col-sm-12 text-left">							
+						<a class="btn btn-primary" href="@routes.FornecedoresController.novo()">
+							<i class="glyphicon glyphicon-plus"></i> Novo Fornecedor</a></br></br>
+					</div>
+				
+
+</div>
+				
+				
+}

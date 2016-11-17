@@ -1,0 +1,63 @@
+@(formFornecedores: Form[Fornecedor])
+@main("Seleção de Fornecedores") {
+
+<div class="table-responsive">
+	<div class="container">
+		<div class="col-md-9">
+			<div class="box">
+			<meta charset="utf-8">
+			<h2>Seleção de Fornecedores</h2>
+			<fieldset>
+				<div class="row">                                        
+				<div class="col-sm-3">	
+					<h5>Alimentação</h5>
+					
+						
+					<input id="bebidas" type="checkbox" name="fornecedor" value="Car"> Bebidas<br>
+					<input id="bebidasNa" type="checkbox" name="fornecedor" value="Car"> Bebidas Não alcoolicas<br>
+					<input id= "buffet" type="checkbox" name="fornecedor" value="Car"> Buffet<br>
+					<input id= "doces" type="checkbox" name="fornecedor" value="Car"> Doces<br>
+					<input id= "casados" type="checkbox" name="fornecedor" value="Car"> Bem Casados<br><br>		
+				</div>
+				
+				<div class="col-sm-3">
+					<h5>Preparativos</h5>
+					<input id="convites" type="checkbox" name="fornecedor" value="Car"> Convites<br>
+					<input id="lembrancinha" type="checkbox" name="fornecedor" value="Car"> Lembrancinhas<br>
+					<input id="decoracao" type="checkbox" name="fornecedor" value="Car"> Decoração<br><br>
+				</div>
+				
+				<div class="col-sm-3">
+					<h5>Festa</h5>
+					<input id="carros" type="checkbox" name="fornecedor" value="Car"> Aluguel de carros<br>
+					<input id="espaco" type="checkbox" name="fornecedor" value="Car"> Espaço<br>
+					<input id="fotografia" type="checkbox" name="fornecedor" value="Car"> Fotografia<br>
+					<input id="video" type="checkbox" name="fornecedor" value="Car"> Gravação de vídeos<br>
+					<input id="festa" type="checkbox" name="fornecedor" value="Car"> Equipamentos para a festa<br>
+					<input id="banda" type="checkbox" name="fornecedor" value="Car"> Bandas e cantores<br>
+					<input id="coral" type="checkbox" name="fornecedor" value="Car"> Coral e orquestra<br>
+					<input id="dj" type="checkbox" name="fornecedor" value="Car"> DJs<br><br>
+				</div>
+				
+				<div class="col-sm-3">
+					<h5>Noivos</h5>
+					<input id="vestido" type="checkbox" name="fornecedor" value="Car"> Vestido<br>
+					<input id="buque" type="checkbox" name="fornecedor" value="Car"> Buquê<br>
+					<input id="alianca" type="checkbox" name="fornecedor" value="Car"> Alianças, jóias e acessórios<br>
+					<input id="maquiagem" type="checkbox" name="fornecedor" value="Car"> Maquiagem<br>
+					<input id="assessoria" type="checkbox" name="fornecedor" value="Car"> Assessoria e cerimonial<br><br>
+				</div>
+			</div>
+
+			</fieldset>
+			<div class="col-sm-12 text-left">
+				<a class="btn btn-primary" href="@routes.FornecedoresController.lista()">
+					<i class="glyphicon glyphicon-send"></i> Enviar </a>
+			</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+				
+}

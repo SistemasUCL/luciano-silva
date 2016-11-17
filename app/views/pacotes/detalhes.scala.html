@@ -1,0 +1,67 @@
+@(listaPacote: List[Pacote], id:Long, listaFornecedores: List[Fornecedor])
+@main("Lista de Pacotes") {
+
+
+	<meta charset="utf-8">
+	
+					<div class="box">
+						@helper.form(action = routes.PacotesController.detalhes(id)) {
+							@for(item <- listaPacote) {
+							@if(item.id == id){
+								<h2>Detalhes do Pacote: @item.nome</h2>
+								
+								</br>
+								
+								<div class="col-sm-4">
+									<div class="box">
+										<b>
+											Valor do Casamento: <font color="#387b48"> @item.valorTotal </font>
+											</br>	
+											Quantidade de Convidados: <font color="#387b48"> @item.qtdConvidados </font>
+											</br>								
+											Descrição: <font color="#387b48"> @item.descricao </font>
+											
+										</b></br></br>
+									</div>
+								</div>	
+								</br></br>
+								<h4>Fornecedores associados ao Pacote: <font color="#387b48"> "@item.nome" </font></h4></br>							
+							}
+						}
+					}
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Valor</th>
+								<th>Descrição</th>
+								<th>Site</th>
+								<th>Quantidade Minima</th>
+								<th>Quantidade Máxima</th>								
+								<th>Tipo de Serviço</tr>
+						</thead>
+						<tbody>
+							@for(item <- listaFornecedores) {
+							<tr>
+								<td>@item.nome</td>
+								<td>@item.valor</td>
+								<td>@item.descricao</td>
+								<td>@item.site</td>
+								<td>@item.minConvidados</td>
+								<td>@item.maxConvidados</td>
+								<td>@item.servico.tipo</td>
+								
+							</tr>
+							}
+						</tbody>
+					</table>
+					
+					<div class="col-sm-12 text-left">
+						<a class="btn btn-primary" href="@routes.PacotesController.selecionar(id)"><i
+							class="glyphicon glyphicon-gift"></i> Selecionar Pacote!</a>
+					</div>
+					
+				</div>
+				
+
+}

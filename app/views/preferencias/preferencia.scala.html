@@ -1,0 +1,46 @@
+@(formPreferencia: Form[Pacote]) 
+@import helper._
+@import meuhelper._
+@main("Seleção de Preferencias"){
+<div class="table-responsive">
+
+	<meta charset="utf-8">
+	<h2>Seleção de Preferências</h2>
+	<div class="col-md-9">
+		<div class="box">
+			<meta charset="utf-8">
+			<h1>Informe a Quantidade de Convidados!</h1>
+			@helper.form(action = routes.ServicosController.salvarPref()) {
+			<fieldset>
+				<input type="hidden" name="id" value='@formPreferencia("id").value'>
+				
+				<div class="col-sm-6">
+					@meuhelper.inputNumber("qtdConvidados",
+					formPreferencia("qtdConvidados").value,"Quantidade de Convidados")
+				</div>
+				@*<div class="col-sm-6">
+					@meuhelper.inputNumber("qtdInvestimento",formPreferencia("qtdInvestimento").value,"Orçamento")
+				</div>
+				<div class="col-sm-6">
+					@meuhelper.inputText("horario",formPreferencia("horario").value,"Horario")
+				</div>
+				<div class="col-sm-6">
+					@meuhelper.inputTextRequired("localidade",formPreferencia("localidade").value,"Localidade")
+				</div>
+				<div class="col-sm-12">
+					@meuhelper.inputTextRequired("detalhes",formPreferencia("detalhes").value,"Detalhes")
+				</div>*@
+
+			</fieldset>
+			<div class="col-sm-12 text-left">
+				<button type="submit" class="btn btn-primary">
+					<i class="glyphicon glyphicon-gift"></i> Gerar Pacote!
+				</button>
+			</div>
+			}
+		</div>
+	</div>
+
+</div>
+
+}

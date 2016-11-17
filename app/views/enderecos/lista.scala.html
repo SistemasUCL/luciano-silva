@@ -1,0 +1,53 @@
+@(listaEnderecos: List[Endereco]) @main("Lista de Enderecos") {
+
+<div id="all">
+	<div id="content">
+		<div class="container">
+			<div class="col-md-9">
+				<div class="box">
+					<meta charset="utf-8">
+					<h2>Todos os Endereços</h2>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Logradouro</th>
+								<th>Numero</th>
+								<th>Complemento</th>
+								<th>CEP</th>
+								<th>Bairro</th>
+								<th>Cidade</th>
+								<th>UF</th>
+							</tr>
+						</thead>
+						<tbody>
+							@for(item <- listaEnderecos) {
+							<tr>
+								<td>@item.logradouro</td>
+								<td>@item.numero</td>
+								<td>@item.complemento</td>
+								<td>@item.cep</td>
+								<td>@item.bairro</td>
+								<td>@item.cidade</td>
+								<td>@item.uf</td>
+								<td><a class="btn btn-primary" href="@routes.EnderecosController.formulario(item.id)">
+									<i class="glyphicon glyphicon-pencil"></i> Editar</a>
+								</td>
+								<td><a class="btn btn-primary" href="@routes.EnderecosController.remover(item.id)"
+									onclick="return confirm('Deseja realmente excluir esta Endereço?')">
+										<i class="glyphicon glyphicon-minus"></i> Remover</a>
+								</td>
+							</tr>
+							}
+						</tbody>
+					</table>
+					</br>
+					<div class="col-sm-12 text-left">							
+						<a class="btn btn-primary" href="@routes.EnderecosController.novo()">
+							<i class="glyphicon glyphicon-plus"></i> Novo Endereço</a></br></br>
+					</div>
+					</br>
+				</div>
+			</div>
+		</div>
+	</div>
+	}

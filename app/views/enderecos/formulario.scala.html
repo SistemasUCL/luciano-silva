@@ -1,0 +1,82 @@
+@(formEndereco: Form[Endereco]) 
+@import helper._ 
+@import meuhelper._
+@main("Formulário de Endereços") {
+
+<div id="all">
+	<div id="content">
+		<div class="container">
+			<div class="col-md-9">
+				<div class="box">
+					<h3>Formulário de Endereço</h3>
+					<meta charset="utf-8">
+					@helper.form(action = routes.EnderecosController.salvar()) {
+					<fieldset>
+						
+						<input type="hidden" name="id" value='@formEndereco("id").value'>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									@meuhelper.inputTextRequired("logradouro",formEndereco("logradouro").value,
+									"Logradouro")</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">@meuhelper.inputNumber("numero",
+									formEndereco("numero").value, "Número")</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									@meuhelper.inputTextRequired("complemento",
+									formEndereco("complemento").value, "Complemento")
+								</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">@meuhelper.inputTextRequired("cep",
+									formEndereco("cep").value, "CEP")
+								</div>
+							</div>
+							
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									@meuhelper.inputTextRequired("bairro",
+									formEndereco("bairro").value, "Bairro")</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">@meuhelper.inputTextRequired("cidade",
+									formEndereco("cidade").value, "Cidade")</div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group">@meuhelper.inputTextRequired("uf",
+									formEndereco("uf").value, "UF")</div>
+							</div>
+						</div>
+					
+					</fieldset>
+				</div>
+				<div class="col-sm-12 text-center">
+					<button type="submit" class="btn btn-primary">
+						<i class="fa fa-save"></i> Salvar
+					</button>
+					@if(session.get("perfil") != null && (session.get("perfil").equals("0"))){
+					<a class="btn btn-primary" href="@routes.EnderecosController.lista()"><i
+						class="glyphicon glyphicon-remove"></i> Cancelar</a>
+					}else{
+						<a class="btn btn-primary" href="@routes.Application.index()"><i
+						class="glyphicon glyphicon-remove"></i> Cancelar</a>
+					}
+				</div>
+			} 
+				
+			</div>
+		</div>
+	</div>
+</div>
+}
+

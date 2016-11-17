@@ -1,0 +1,61 @@
+@(listaUsuario: List[Usuario]) @main("Lista de Usuarios") {
+
+<div id="all">
+	<div id="content">
+		<div class="container">
+			<div class="col-md-9">
+				<div class="box">
+					<meta charset="utf-8">
+					<div class="table-responsive">
+						<meta charset="utf-8">
+						<h2>Usuários do Sistema</h2>
+						</br>
+						</br>
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>login</th>
+									<th>Nome</th>
+									<th>Sobrenome</th>
+									<th>Email</th>
+									<th>Telefone</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for(item <- listaUsuario) {
+								<tr>
+									<td>@item.login</td>
+									<td>@item.nome</td>
+									<td>@item.sobrenome</td>
+									<td>@item.email</td>
+									<td>@item.telefone</td>
+									@*<td><a class="btn btn-primary"
+										href="@routes.UsuariosController.formulario(item.id)"> <i
+											class="glyphicon glyphicon-pencil"></i> Editar
+									</a></td>*@
+									<td><a class="btn btn-primary"
+										href="@routes.UsuariosController.remover(item.id)"
+										onclick="return confirm('Deseja realmente excluir esta Usuario?')">
+											<i class="glyphicon glyphicon-minus"></i> Remover
+									</a></td>
+								</tr>
+								}
+							</tbody>
+						</table>
+
+						<div class="col-sm-12 text-left">
+							<a class="btn btn-primary"
+								href="@routes.UsuariosController.novo()"> <i
+								class="glyphicon glyphicon-plus"></i> Novo Usuário
+							</a></br>
+							</br>
+						</div>
+						</br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+}

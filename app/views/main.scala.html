@@ -1,0 +1,454 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html>  
+    <head>
+    	<meta charset="utf-8">
+    	
+	    <meta name="robots" content="all,follow">
+	    <meta name="googlebot" content="index,follow,snippet,archive">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="Obaju e-commerce template">
+	    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+	    <meta name="keywords" content="">
+    
+        <title>@title</title>
+        <link href="@routes.Assets.versioned("vendors/bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
+        <link href="@routes.Assets.versioned("css/animate.min.css")" rel="stylesheet" media="screen">
+        
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+	    <!-- styles -->
+	    <link href="@routes.Assets.versioned("css/font-awesome.css")" rel="stylesheet" media="screen">
+	    <link href="@routes.Assets.versioned("css/owl.carousel.css")" rel="stylesheet" media="screen">
+	    <link href="@routes.Assets.versioned("css/owl.theme.css")" rel="stylesheet" media="screen">
+	
+	    <!-- theme stylesheet -->
+	    <link href="@routes.Assets.versioned("css/style.default.css")" rel="stylesheet" media="screen">
+	
+	    <!-- your stylesheet with modifications -->
+	    <link href="@routes.Assets.versioned("img/")" rel="stylesheet" media="screen">
+	
+	    <script src="js/respond.min.js"></script>
+	
+	    <link rel="shortcut icon" href="favicon.png">
+	    
+	    <link href="@routes.Assets.versioned("css/owl.theme.css")" rel="stylesheet" media="screen">
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("vendors/jquery-2.2.3.min.js")" type="text/javascript"></script>
+        
+        <script src="@routes.Assets.versioned("js/jquery-1.11.0.min.js")"></script>
+	    <script src="@routes.Assets.versioned("js/bootstrap.min.js")"></script>
+	    <script src="@routes.Assets.versioned("js/jquery.cookie.js")"></script>
+	    <script src="@routes.Assets.versioned("js/waypoints.min.js")"></script>
+	    <script src="@routes.Assets.versioned("js/modernizr.js")"></script>
+	    <script src="@routes.Assets.versioned("js/bootstrap-hover-dropdown.js")"></script>
+	    <script src="@routes.Assets.versioned("js/owl.carousel.min.js")"></script>
+	    <script src="@routes.Assets.versioned("js/front.js")"></script>
+	    <script src="@routes.Assets.versioned("js/populaCarrinho.js")"></script>
+    
+    </head>
+    <body>
+    	<div id="top">
+   		<div class="container">
+            
+            @if(session.get("perfil") == null){ 
+            
+            	<div class="col-md-12" data-animate="fadeInDown">
+	                <ul class="menu">
+	                	 <li><a class="btn" href="@routes.UsuariosController.index()">Login</a></li>	                 
+	                    <li><a class="btn" href="@routes.UsuariosController.novo()">Cadastrar</a>
+	                    </li>
+	                    <li><a class="btn" href="#">Contatos</a>
+	                </ul>
+	            </div> 
+        
+            } else{ 
+            	 @if((session.get("perfil") != null) && (session.get("perfil").equals("0")) && (session.get("login") != null) ){ 
+	            	<div class="col-md-12" data-animate="fadeInDown">
+		                <ul class="menu">
+		                	<li><a class="btn" href="@routes.Application.index()">Usuário: @session.get("login").toString()</a></li>
+			                <li><a class="btn" href="@routes.ClientesController.lista()">Clientes</a></li>
+		                 	<li><a class="btn" href="@routes.UsuariosController.lista()">Usuários</a></li>
+		                 	<li><a class="btn" href="@routes.FornecedoresController.lista()">Fornecedores</a></li>		                 	                 
+		                    <li><a class="btn" href="@routes.ServicosController.lista()">Serviços</a></li>
+		                    <li><a class="btn" href="@routes.UsuariosController.sair()"><i class="fa fa-sign-out"></i> Logout</a></li>
+		                </ul>
+	            	</div>	                 		
+		        	}else{
+		        	
+		        	<div class="col-md-12" data-animate="fadeInDown">
+		                <ul class="menu">
+		                	<li><a class="btn" href="@routes.Application.index()">Usuário: @session.get("login").toString()</a></li>	                 
+		                    <li><a class="btn" href="@routes.ClientesController.novo()">Cadastrar</a></li>
+		                    <li><a class="btn" href="#">Contatos</a></li>
+		                    <li><a class="btn" href="@routes.UsuariosController.sair()"><i class="fa fa-sign-out"></i> Logout</a></li>
+		                </ul>
+	            	</div> 
+	        	}
+            
+            }
+
+        </div>       
+        
+        
+
+    </div>
+
+    <!-- *** TOP BAR END *** -->
+
+    <!-- *** NAVBAR ***
+ _________________________________________________________ -->
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a class="navbar-brand home" href="@routes.Application.index()" data-animate-hover="bounce">
+                    <img src=@routes.Assets.versioned("img/logo1.png") alt="Casamentaria" class="hidden-xs">
+                    <img src=@routes.Assets.versioned("img/logo-small.png") alt="Obaju logo" class="visible-xs"><span class="sr-only">Casamentaria</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                    
+                </div>
+            </div>
+            <!--/.navbar-header -->
+
+            <div class="navbar-collapse collapse" id="navigation">
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="@routes.Application.index()">Inicio</a>
+                    </li>
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Fornecedores <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>Alimentação</h5>
+                                            <ul>
+                                                <li><a href="#">Bebidas</a>
+                                                </li>
+                                                <li><a href="#">Buffet</a>
+                                                </li>
+                                                <li><a href="#">Doces</a>
+                                                </li>
+                                                <li><a href="#">Bem Casados</a>
+                                                </li>                                               
+                                            </ul>                                            
+                                        </div>
+                                        <div class="col-sm-3"> 	                                          
+	                                    	<h5>Preparativos</h5>
+	                                        <ul>
+	                                        	<li><a href="#">Convites</a>
+                                                </li>
+                                                <li><a href="#">Lembrancinhas</a>
+                                                </li>
+                                                <li><a href="#">Decoração</a>
+                                                </li>                                               
+	                                        </ul>
+                                        </div>
+                                                                  
+                                        <div class="col-sm-3">
+                                            <h5>Festa</h5>
+                                            <ul>
+                                                <li><a href="#">Aluguel de Carros</a>
+                                                </li>
+                                                <li><a href="#">Espaço</a>
+                                                </li>
+                                                <li><a href="#">Fotografia</a>
+                                                </li>
+                                                <li><a href="#">Gravação de Vídeos</a>
+                                                </li>
+                                                <li><a href="#">Equipamentos para a festa</a>
+                                                </li>
+                                                <li><a href="#">Bandas</a>
+                                                </li>
+                                                <li><a href="#">Coral e Orquestra</a>
+                                                </li>
+                                                <li><a href="#">Dj's</a>
+                                                </li>
+                                               
+                                            </ul>
+                                        </div>
+                                   
+                                        <div class="col-sm-3">
+                                            <h5>Para o Casal</h5>
+                                            <ul>
+                                                <li><a href="#">Vestido de Noiva</a>
+                                                </li>
+                                                <li><a href="#">Buquê</a>
+                                                </li>
+                                                <li><a href="#">Alianças</a>
+                                                </li>
+                                                <li><a href="#">Maquiagem</a>
+                                                </li>
+                                                <li><a href="#">Assessoria e Cerimonial</a>
+                                                </li>
+                                               
+                                            </ul>
+                                        </div>                                       
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+
+@* <!--                     <li class="dropdown yamm-fw"> -->
+<!--                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Solicitação de Fornecedor <b class="caret"></b></a> -->
+<!--                         <ul class="dropdown-menu"> -->
+<!--                             <li> -->
+<!--                                 <div class="yamm-content"> -->
+<!--                                     <div class="col-sm-3"> -->
+<!--                                     	<h5><a href="@routes.ServicosController.selecao()">Selecionar Fornecedor</a></h5> -->
+<!--                                     </div> -->
+                                        
+<!--                                 </div> -->
+<!--                                 /.yamm-content -->
+<!--                             </li> -->
+<!--                         </ul> -->
+<!--                     </li> --> *@
+
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Pacotes de Casamento <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                	<div class="col-sm-3">
+                                    	<h5><a href="@routes.ServicosController.novoPref()">Preferências</a></h5>
+                                    </div>
+                                    <div class="col-sm-3">
+                                    	<h5><a href="@routes.PacotesController.lista()">Visualizar Pacotes</a></h5>
+                                    </div>                                  
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    
+                </ul>
+
+            </div>
+            <!--/.nav-collapse -->
+
+            <div class="navbar-buttons">
+
+                
+                <!--/.nav-collapse -->
+
+                <div class="navbar-collapse collapse right" id="search-not-mobile">
+                    <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+			<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+		    </span>
+                    </div>
+                </form>
+
+            </div>
+            <!--/.nav-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#navbar -->
+
+    <!-- *** NAVBAR END *** -->
+    
+    @if(flash.containsKey("success")){
+    	<div class="alert alert-dismissible alert-success">
+  			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>@flash.get("success")</strong>
+		</div>
+	} @if(flash.containsKey("error")){
+		<div class="alert alert-dismissible alert-danger">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>@flash.get("error")</strong>
+		</div>
+	}
+    
+        @content
+        
+        
+        
+        
+        <!-- *** FOOTER ***
+ _________________________________________________________ -->
+        <div id="footer" data-animate="fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Páginas</h4>
+
+                        <ul>
+                            <li><a href="#">About us</a>
+                            </li>
+                            <li><a href="#">Termos e Condições</a>
+                            </li>
+                            <li><a href="#">FAQ</a>
+                            </li>
+                            <li><a href="#">Contato</a>
+                            </li>
+                        </ul>
+
+                        <hr>
+
+                        <h4>Usuários</h4>
+
+                        <ul>
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            </li>
+                            <li><a href="#">Cadastrar</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg hidden-sm">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Categorias</h4>
+
+                        <h5>Vestidos</h5>
+
+                        <ul>
+                            <li><a href="#">Sereia</a>
+                            </li>
+                            <li><a href="#">Semi - Sereia</a>
+                            </li>
+                            <li><a href="category.html">Princesa</a>
+                            </li>
+                        </ul>
+
+                        <h5>Acessórios</h5>
+                        <ul>
+                            <li><a href="#">Porta Aliança</a>
+                            </li>
+                            <li><a href="#">Descoração</a>
+                            </li>
+                            <li><a href="#">Pulseira</a>
+                            </li>
+                            <li><a href="#">Tiaras</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Localização</h4>
+
+                        <p><strong>Casamentaria Ltd.</strong>
+                            <br>13/25 ES010
+                            <br>Manguinhos
+                            <br>45Y 73J
+                            <br>Serra
+                            <br>
+                            <strong>ES</strong>
+                        </p>
+
+                        <a href="#">Vá para página de contato</a>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Notícias</h4>
+
+                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                       
+                            <div class="input-group">
+
+                                <input type="text" class="-control">
+
+                                <span class="input-group-btn">
+
+			    <button class="btn btn-default" type="button">Se inscrever!</button>
+
+			</span>
+
+                            </div>
+                            <!-- /input-group -->
+                        </>
+
+                        <hr>
+
+                        <h4>Manter contato</h4>
+
+                        <p class="social">
+                            <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                        </p>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+        
+         <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">©2016 E-commerce Casamentaria</p>
+
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+
+
+
+    </div>
+    <!-- /#all -->
+    </body>
+</html>

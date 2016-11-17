@@ -1,0 +1,109 @@
+@(formCliente: Form[Cliente]) 
+@import helper._ 
+@import meuhelper._
+@main("Cadastro de Clientes") {
+
+<div id="all">
+
+	<div id="content">
+		<div class="container">
+
+			<div class="col-md-12">
+
+				<ul class="breadcrumb">
+					<li><a href="#">Inicio</a></li>
+					<li>Minha Conta</li>
+				</ul>
+
+			</div>
+
+			<div class="col-md-3">
+				<!-- *** CUSTOMER MENU ***
+ _________________________________________________________ -->
+
+				@if(!session().isEmpty()){
+				<div class="panel panel-default sidebar-menu">
+
+					<div class="panel-heading">
+						<h3 class="panel-title">Sess&atildeo Cliente</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#"><i class="fa fa-user"></i> Minha Conta</a></li>
+							<li><a href="@routes.UsuariosController.sair()"> <i
+									class="fa fa-sign-out"></i> Sair
+							</a></li>
+						</ul>
+					</div>
+
+				</div>
+				}
+				<!-- /.col-md-3 -->
+
+				<!-- *** CUSTOMER MENU END *** -->
+			</div>
+
+			<div class="col-md-9">
+				<div class="box">
+					<meta charset="utf-8">
+					<h1>Minha Conta</h1>
+
+					</br>
+					
+					<h3>Dados Pessoais</h3>
+					@meuhelper.form("clientes",
+					routes.ClientesController.salvar,"post") {
+					<fieldset>
+						<input type="hidden" name="id" value='@formCliente("id").value'>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									@meuhelper.inputTextRequired("nomeNoiva", formCliente("nomeNoiva").value,
+									"Nome Noiva")</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									@meuhelper.inputTextRequired("nomeNoivo", formCliente("nomeNoivo").value,
+									"Nome Noivo")</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									@meuhelper.inputDate("dataCasamento", formCliente("dataCasamento").value,
+									"Data Casamento")</div>
+							</div>
+						</div>
+						
+						<!-- /.row -->
+
+						<div class="col-sm-12 text-center">
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-save"></i> Salvar
+							</button>
+							@if(session.get("perfil") != null &&
+							(session.get("perfil").equals("0"))){ <a class="btn btn-primary"
+								href="@routes.ClientesController.lista()"><i
+								class="glyphicon glyphicon-remove"></i> Cancelar</a> }else{ <a
+								class="btn btn-primary" href="@routes.Application.index()"><i
+								class="glyphicon glyphicon-remove"></i> Cancelar</a> }
+						</div>
+
+					</fieldset>
+					}
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#content -->
+
+
+
+</div>
+}

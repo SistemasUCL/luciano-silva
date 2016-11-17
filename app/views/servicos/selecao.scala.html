@@ -1,0 +1,77 @@
+@(listaServico: List[Servico], formServico: Form[Servico])
+@import helper._
+@import meuhelper._
+@main("Seleção de Serviços") {
+
+<div class="table-responsive">
+	<div class="container">
+		<div class="col-md-9">
+			<div class="box">
+			<meta charset="utf-8">
+			<h2>Seleção de Serviços</h2>
+
+@meuhelper.form("salvarSelecao", routes.ServicosController.salvarSelecao,"post") {
+				<div class="row">   
+				                                     		
+				<div class="col-sm-3">
+					<h5>Alimentação</h5>
+					<input type="checkbox" name="topicos" value="1"> Bebidas<br>
+					<input type="checkbox" name="topicos" value="2"> Bebidas Não alcoolicas<br>
+					<input type="checkbox" name="topicos" value="3"> Buffet<br>
+					<input type="checkbox" name="topicos" value="4"> Doces<br>
+					<input type="checkbox" name="topicos" value="5"> Bem Casados	
+				</div>	
+					
+				
+				<div class="col-sm-3">
+					<h5>Preparativos</h5>
+					<input type="checkbox" name="topicos" value="6"> Convites<br>
+					<input type="checkbox" name="topicos" value="7"> Lembrancinhas<br>
+					<input type="checkbox" name="topicos" value="8"> Decoração<br><br>
+				</div>
+				
+				<div class="col-sm-3">
+					<h5>Festa</h5>
+					<input type="checkbox" name="topicos" value="9"> Aluguel de carros<br>
+					<input type="checkbox" name="topicos" value="10"> Espaço<br>
+					<input type="checkbox" name="topicos" value="11"> Fotografia<br>
+					<input type="checkbox" name="topicos" value="12"> Gravação de vídeos<br>
+					<input type="checkbox" name="topicos" value="13"> Equipamentos para a festa<br>
+					<input type="checkbox" name="topicos" value="14"> Bandas e cantores<br>
+					<input type="checkbox" name="topicos" value="15"> Coral e orquestra<br>
+					<input type="checkbox" name="topicos" value="16"> DJs<br><br>
+				</div>
+				
+				<div class="col-sm-3">
+					<h5>Noivos</h5>
+					<input type="checkbox" name="topicos" value="17"> Vestido<br>
+					<input type="checkbox" name="topicos" value="18"> Buquê<br>
+					<input type="checkbox" name="topicos" value="19"> Alianças, jóias e acessórios<br>
+					<input type="checkbox" name="topicos" value="20"> Maquiagem<br>
+					<input type="checkbox" name="topicos" value="21"> Assessoria e cerimonial<br><br>
+				</div> 
+			</div>
+			
+					<fieldset>				
+						@for(item <- listaServico) {
+							@if(item.id > 21){
+								<input type="checkbox" name="topicos" value=@item.id> @item.tipo<br>
+							}		
+						}
+						
+						</br></br>						
+						<div class="col-sm-12 text-left">
+							<p class="text-center">
+                                <button class="btn btn-primary"><i class="glyphicon glyphicon-send"></i> 
+                                	Avançar</button>
+                      	  </p>
+						</div>
+						</fieldset>
+					}
+				
+			</div>
+		</div>
+	</div>
+</div>
+				
+}

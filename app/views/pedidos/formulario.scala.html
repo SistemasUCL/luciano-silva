@@ -1,0 +1,21 @@
+@(formPedido: Form[Pedido])
+@import helper._
+@import meuhelper._
+@main("Formulário de Pedidos") {
+
+<meta charset="utf-8">
+<h1>Formulário de Pedido</h1>
+
+@helper.form(action = routes.PedidosController.salvar()) {
+<fieldset>
+	<legend>Pedido (@formPedido("id").valueOr("Novo"))</legend>
+	<input type="hidden" name="id" value='@formPedido("id").value'>
+
+	@meuhelper.inputText("valor", formPedido("valor").value, "Valor")	
+	@meuhelper.inputDate("data", formPedido("data").value, "Data")
+	@meuhelper.inputText("status", formPedido("status").value, "Status")
+
+</fieldset>
+<input type="submit" class="btn btn-primary" value="Salvar">
+<a class="btn" href="@routes.PedidosController.lista()">Cancelar</a>
+} }

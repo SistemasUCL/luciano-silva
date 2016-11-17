@@ -1,0 +1,44 @@
+@(listaPreferencias: List[Preferencias]) @main("Lista de Preferencias") {
+
+
+<div class="table-responsive">
+			
+					<meta charset="utf-8">
+					<h2>Todos os Preferencias</h2>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Descrição</th>
+								<th>Site</th>
+								<th>Quantidade Minima</th>
+								<th>Quantidade Máxima</th>
+								
+								<th>Tipo de Serviço</tr>
+						</thead>
+						<tbody>
+							@for(item <- listaPreferencias) {
+							<tr>
+								
+								<td><a class="btn btn-primary" href="@routes.ServicosController.formularioPref(item.id)">
+									<i class="glyphicon glyphicon-pencil"></i> Editar</a>
+								</td>
+								<td><a class="btn btn-primary" href="@routes.ServicosController.removerPref(item.id)"
+									onclick="return confirm('Deseja realmente excluir esta Categoria?')">
+										<i class="glyphicon glyphicon-minus"></i> Remover</a>
+								</td>
+							</tr>
+							}
+						</tbody>
+					</table>
+					</br>
+					<div class="col-sm-12 text-left">							
+						<a class="btn btn-primary" href="#">
+							<i class="glyphicon glyphicon-plus"></i> Novo Preferencia</a></br></br>
+					</div>
+				
+
+</div>
+				
+				
+}
